@@ -17,6 +17,17 @@ container.appendChild(warning);
 container.appendChild(input);
 container.appendChild(start);
 
+// Changing color of the grid
+function changeColor(grid) {
+    if (getComputedStyle(grid).backgroundColor === "rgba(0, 0, 0, 0)") {
+        let a = parseInt(Math.random() * 255);
+        let b = parseInt(Math.random() * 255);
+        let c = parseInt(Math.random() * 255);
+        let string = `rgb(${a}, ${b}, ${c})`;
+        grid.style.backgroundColor = string;
+    }
+}
+
 // Function that creates grid
 function createGrid(size) {
     warning.remove();
@@ -25,12 +36,16 @@ function createGrid(size) {
     container.style.justifyContent = "normal";
     container.style.alignItems = "normal";
 
-    // Creating grid
-    let sSize = container.offsetWidth / size;
+    // Creating grid and adding color effect
+    let sSize = 150 / size;
     for (i = 0; i < size * size; i++) {
         const square = document.createElement("div");
         square.style.width = sSize + "px";
         square.style.height = sSize + "px";
+
+        square.addEventListener("mouseenter", function(e) {
+            changeColor(e.target);
+        });
         container.appendChild(square);
     }
 }
