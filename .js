@@ -45,6 +45,7 @@ function createGrid(size) {
 
         square.addEventListener("mouseenter", function(e) {
             changeColor(e.target);
+            square.setAttribute("class", "child");
         });
         container.appendChild(square);
     }
@@ -60,3 +61,13 @@ start.addEventListener("click", () => {
         alert("Invalid input");
     }
 });
+
+//Delete button
+const button = document.querySelector(".eraser");
+function resetGrid() {
+    let li = document.querySelectorAll(".child");
+    for (i = 0; i < li.length; i++) {
+        li[i].style.backgroundColor = "rgb(0, 0, 0, 0)";
+    }
+}
+button.addEventListener("click", resetGrid);
